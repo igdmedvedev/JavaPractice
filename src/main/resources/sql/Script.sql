@@ -1,20 +1,26 @@
 create table contribution(
-contribution_code integer primary key,
-contribution_name text,
-months integer,
-rate integer
+	contribution_code integer primary key,
+	contribution_name text not null,
+	months integer not null,
+	rate real not null
 )
+
 
 select * from contribution
 
+drop  table client
+drop  table client_account
+drop  table contribution
 
 
 create table client(
-client_code integer primary key,
-client_name text,
-passport_number integer,
-client_adress text,
-phone_number integer
+	client_code integer primary key,
+	first_name text not null,
+	middle_name text,
+	last_name text  not null,
+	passport_number text not null,
+	client_adress text not null,
+	phone_number text not null
 )
 
 select * from client
@@ -23,13 +29,36 @@ insert into client (client_code) values (5)
 
 
 create table client_account(
-account_number integer,
-client_code integer references client,
-contribution_code integer references contribution,
-opening_date date,
-closing_date date,
-invested_amount real
+	account_number integer not null,
+	client_code integer references client not null,
+	contribution_code integer references contribution not null,
+	opening_date date not null,
+	closing_date date not null,
+	invested_amount real not null
 )
 
 select * from client_account
 insert into client_account (client_code) values (5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
