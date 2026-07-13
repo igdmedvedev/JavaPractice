@@ -17,5 +17,5 @@ public interface IEntityRepository<T extends IEntity> {
     void saveEntity(T e);
     boolean updateEntity(T e);
     boolean deleteEntity(Object pk);
-    boolean deleteEntityConcat(String pk);
+    boolean deleteEntityByName(String name);
 }

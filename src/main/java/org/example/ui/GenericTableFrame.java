@@ -58,7 +58,7 @@ public class GenericTableFrame<T extends IEntity> extends JFrame {
         JButton btnAdd = new JButton("Add");
         JButton btnEdit = new JButton("Edit");
         JButton btnDelete = new JButton("Delete");
-        JButton btnDeleteById = new JButton("Delete by id");
+        JButton btnDeleteById = new JButton("Delete by name");
         JButton btnRefresh = new JButton("Refresh");
 
         btnAdd.addActionListener(this::onAdd);
@@ -188,23 +188,23 @@ public class GenericTableFrame<T extends IEntity> extends JFrame {
 
     private void onDeleteById(ActionEvent e) {
         try {
-            String idStr = JOptionPane.showInputDialog(this, "Enter ID to delete:", "Delete by ID", JOptionPane.QUESTION_MESSAGE);
-            if (idStr == null || idStr.trim().isEmpty()) {
+            String name = JOptionPane.showInputDialog(this, "Enter name to delete:", "Delete by name", JOptionPane.QUESTION_MESSAGE);
+            if (name == null || name.trim().isEmpty()) {
                 return;
             }
 
             int confirm = JOptionPane.showConfirmDialog(
                     this,
-                    "Do you really want to delete the record with ID = " + idStr + "?",
+                    "Do you really want to delete the record with name = " + name + "?",
                     "Confirm Deletion",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE
             );
 
             if (confirm == JOptionPane.YES_OPTION) {
-                repository.deleteEntityConcat(idStr);
+                repository.deleteEntityByName(name);
                 refreshTable();
-                JOptionPane.showMessageDialog(this, "Record with ID " + idStr + " was deleted.");
+                JOptionPane.showMessageDialog(this, "Record with name " + name + " was deleted.");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
